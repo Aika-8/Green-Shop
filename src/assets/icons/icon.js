@@ -3,6 +3,8 @@ import Basket from "../icons/basket.svg?react";
 import Search from "../icons/search.svg?react";
 import Logout from "../icons/Logout.svg?react";
 import Image from "../icons/Image.svg?react";
+import GreenBasket from "../icons/greenBasket.svg?react";
+import Heart from "../icons/heart.svg?react";
 
 export const Icons = {
   Logo,
@@ -10,4 +12,6 @@ export const Icons = {
   Search,
   Logout,
   Image,
+  GreenBasket,
+  Heart,
 };

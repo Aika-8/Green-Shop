@@ -42,6 +42,7 @@ const StyledHeader = styled.header`
   top: 0;
   z-index: 15;
   margin-top: 16px;
+  background-color: #ffffff;
 `;
 const ContainerHeader = styled.div`
   width: 90%;
