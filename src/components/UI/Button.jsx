@@ -23,6 +23,18 @@ const StylesButton = (variant) => {
         background: "#ffffff",
       };
     }
+    case "back": {
+      return {
+        width: "100px",
+        height: "30px",
+        position: "fixed",
+        top: "78%",
+        right: "12%",
+        borderRadius: "20px",
+        backgroundColor: "#e0e0e0",
+        color: "#333",
+      };
+    }
     default:
       return null;
   }

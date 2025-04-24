@@ -2,19 +2,22 @@ import React from "react";
 import { IconsButton } from "./UI/IconsButton";
 import { Icons } from "../assets/icons/icon";
 import styled from "styled-components";
+import { NavLink } from "react-router-dom";
 
 export const Header = () => {
   return (
     <StyledHeader>
       <ContainerHeader>
         <IconsButton>
-          <Icons.Logo />
+          <StyledLinkLogo>
+            <Icons.Logo to="/" />
+          </StyledLinkLogo>
         </IconsButton>
         <StyledNav>
-          <StyledPTag>Home</StyledPTag>
-          <StyledPTag>Shop</StyledPTag>
-          <StyledPTag>Plant Care</StyledPTag>
-          <StyledPTag>Blogs</StyledPTag>
+          <StyledLink to="/">Home</StyledLink>
+          <StyledLink>Shop</StyledLink>
+          <StyledLink>Plant Care</StyledLink>
+          <StyledLink to="/blog">Blogs</StyledLink>
         </StyledNav>
         <StyledBlockClientFnc>
           <BlockLoupeBasket>
@@ -22,10 +25,10 @@ export const Header = () => {
             <Icons.Basket />
           </BlockLoupeBasket>
           <StyledLogout>
-            <IconsButton>
+            <StyledLink to="/auth">
               <Icons.Logout />
               <StyledSpanLogout>Logout</StyledSpanLogout>
-            </IconsButton>
+            </StyledLink>
           </StyledLogout>
         </StyledBlockClientFnc>
       </ContainerHeader>
@@ -34,24 +37,23 @@ export const Header = () => {
 };
 const StyledHeader = styled.header`
   width: 100%;
-  height: 53px;
+  height: 70px;
   display: flex;
   justify-content: center;
-  align-items: flex-start;
+  align-items: center;
   position: fixed;
   top: 0;
   z-index: 15;
-  margin-top: 16px;
   background-color: #ffffff;
+  border-bottom: 0.3px solid rgba(70, 163, 88, 0.5);
 `;
 const ContainerHeader = styled.div`
   width: 90%;
-  height: 45px;
+  padding: 0 40px;
+  height: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-bottom: 25px;
-  border-bottom: 0.3px solid rgba(70, 163, 88, 0.5);
 `;
 const StyledNav = styled.div`
   display: flex;
@@ -59,9 +61,25 @@ const StyledNav = styled.div`
   align-items: center;
   gap: 50px;
 `;
-const StyledPTag = styled.p`
+const StyledLinkLogo = styled(NavLink)`
+  color: rgb(61, 61, 61);
   font-weight: 400;
   line-height: 20px;
+  text-decoration: none;
+  &:hover,
+  :active {
+    font-weight: 700;
+    cursor: pointer;
+  }
+`;
+const StyledLink = styled(NavLink)`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: rgb(61, 61, 61);
+  font-weight: 400;
+  line-height: 20px;
+  text-decoration: none;
   &:hover {
     font-weight: 700;
     cursor: pointer;
