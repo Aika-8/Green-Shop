@@ -4,6 +4,7 @@ import { Button } from "../components/UI/Button";
 import { Icons } from "../assets/icons/icon";
 import styled from "styled-components";
 import { IconsButton } from "../components/UI/IconsButton";
+import { NavLink } from "react-router-dom";
 
 export const BasketPage = () => {
   const { state, increment, decrement, deleteFromBasket } =
@@ -14,10 +15,10 @@ export const BasketPage = () => {
     .toFixed(2);
   return (
     <Wrapper>
-      <h1>Basket</h1>
       {state.basket.length > 0 ? (
         <ContainerBasketAndDelivery>
           <ProductsList>
+            <h1>Basket</h1>
             {state.basket.map((item) => (
               <div key={item.id}>
                 <WrapperOrderData>
@@ -69,14 +70,18 @@ export const BasketPage = () => {
           </ContainerDelivery>
         </ContainerBasketAndDelivery>
       ) : (
-        <div>
+        <StyledEmptyBasket>
           <p>The basket is still empty</p>
-          <p>
+          <StyledRecomentPTag>
             Take a look at the main page — we've collected products there that
             you might like.
-          </p>
-          <Button variant={"change"}>Go to the main page</Button>
-        </div>
+          </StyledRecomentPTag>
+          <NavLink to="/">
+            <StyledButtonMain variant={"change"}>
+              Go to the main page
+            </StyledButtonMain>
+          </NavLink>
+        </StyledEmptyBasket>
       )}
     </Wrapper>
   );
@@ -85,8 +90,8 @@ const Wrapper = styled.ul`
   width: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
+  justify-content: center;
+  align-items: center;
   gap: 30px;
   padding: 0px 120px;
   margin-bottom: 100px;
@@ -182,4 +187,22 @@ const BlockTotalPrice = styled.div`
   justify-content: space-between;
   align-items: center;
   margin-top: 10px;
+`;
+const StyledEmptyBasket = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+`;
+const StyledRecomentPTag = styled.p`
+  color: #989898;
+`;
+const StyledButtonMain = styled(Button)`
+  width: 200px;
+  height: 60px;
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: 600;
+  border-radius: 10px;
 `;

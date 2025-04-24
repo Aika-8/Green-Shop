@@ -57,7 +57,6 @@ const StylesButton = (variant) => {
       return {
         width: "100%",
         height: "50px",
-        borderRadius: "8px",
         backgroundColor: "rgb(70, 163, 88)",
         color: "#ffffff",
         fontSize: "18px",

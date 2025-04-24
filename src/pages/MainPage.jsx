@@ -73,6 +73,7 @@ const StyledList = styled.ul`
   align-items: flex-start;
   gap: 41px;
   position: relative;
+  margin-bottom: 100px;
 `;
 const GroupIcons = styled.div`
   display: flex;
