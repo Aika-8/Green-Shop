@@ -9,6 +9,7 @@ import { MainPage } from "../pages/MainPage";
 import { Blog } from "../pages/Blog";
 import { CardInner } from "../pages/CardInner";
 import { Login } from "../auth/Login";
+import { BasketPage } from "../pages/BasketPage";
 
 export const AppRouter = () => {
   const routes = createBrowserRouter([
@@ -35,6 +36,10 @@ export const AppRouter = () => {
         {
           path: "/auth",
           element: <Login />,
+        },
+        {
+          path: "/basket",
+          element: <BasketPage />,
         },
       ],
     },

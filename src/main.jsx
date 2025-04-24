@@ -3,10 +3,13 @@ import { createRoot } from "react-dom/client";
 import "./index.css";
 import { App } from "./App";
 import { ToastContainer } from "react-toastify";
+import { ProductsProvider } from "./context/ProductsContext";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <ToastContainer />
-    <App />
+    <ProductsProvider>
+      <App />
+    </ProductsProvider>
   </StrictMode>
 );

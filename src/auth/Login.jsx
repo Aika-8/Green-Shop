@@ -120,7 +120,13 @@ export const Login = () => {
             <StyledCountryCode
               value={countryCode.value}
               onChange={countryCode.onChange}
-            />
+            >
+              <option value="+996">+996</option>
+              <option value="+7">+7</option>
+              <option value="+374">+374</option>
+              <option value="+998">+998</option>
+              <option value="+375">+375</option>
+            </StyledCountryCode>
             <InputPhoneNumber
               type="tel"
               name="phone"
@@ -191,7 +197,7 @@ const BlockNumber = styled.div`
   display: flex;
   gap: 10px;
 `;
-const StyledCountryCode = styled(Input)`
+const StyledCountryCode = styled.select`
   width: 78px;
   text-align: center;
   box-sizing: border-box;

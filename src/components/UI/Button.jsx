@@ -35,6 +35,34 @@ const StylesButton = (variant) => {
         color: "#333",
       };
     }
+    case "increase": {
+      return {
+        width: "50px",
+        height: "30px",
+        borderRadius: "8px",
+        backgroundColor: "rgb(70, 163, 88)",
+        color: "#ffffff",
+      };
+    }
+    case "decrease": {
+      return {
+        width: "50px",
+        height: "30px",
+        borderRadius: "8px",
+        backgroundColor: "#e0e0e0",
+        color: "#333",
+      };
+    }
+    case "order": {
+      return {
+        width: "100%",
+        height: "50px",
+        backgroundColor: "rgb(70, 163, 88)",
+        color: "#ffffff",
+        fontSize: "18px",
+        fontWeight: "700",
+      };
+    }
     default:
       return null;
   }
