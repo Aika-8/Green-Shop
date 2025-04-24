@@ -1,39 +1,68 @@
-import React from "react";
+import React, { useContext } from "react";
 import { cards } from "../utils/constants/cards";
 import styled from "styled-components";
 import { IconsButton } from "../components/UI/IconsButton";
 import { Icons } from "../assets/icons/icon";
 import { useNavigate } from "react-router-dom";
+import { ProductsContext } from "../context/ProductsContext";
 
 export const MainPage = () => {
+  const { state, addToBasketFromMain } = useContext(ProductsContext);
   const navigate = useNavigate();
   const handleCardClick = (id) => {
     navigate(`/main/${id}`);
   };
+  const filteredCards = state.productsCatalog.filter(
+    (item) =>
+      item.title.toLowerCase().includes(state.searchQuery.toLowerCase()) ||
+      item.price.toString().includes(state.searchQuery.toLowerCase())
+  );
   return (
     <StyledList>
-      {cards.map((item) => (
-        <StyledCardItem key={item.id} onClick={() => handleCardClick(item.id)}>
-          <StyledImageBlock>
-            <StyledImage src={item.image} alt={item.title} />
-          </StyledImageBlock>
-          <GroupIcons>
-            <StyledIcons>
-              <Icons.GreenBasket />
-            </StyledIcons>
-            <StyledIcons>
-              <Icons.Heart />
-            </StyledIcons>
-            <StyledIcons>
-              <Icons.Search />
-            </StyledIcons>
-          </GroupIcons>
-          <BlockTitlePrice>
-            <StyledTitle>{item.title}</StyledTitle>
-            <StyledPrice>${item.price}</StyledPrice>
-          </BlockTitlePrice>
-        </StyledCardItem>
-      ))}
+      {filteredCards.length === 0 ? (
+        <NoProductsText>No products found...</NoProductsText>
+      ) : (
+        <>
+          {filteredCards?.map((item) => (
+            <StyledCardItem
+              key={item.id}
+              onClick={() => handleCardClick(item.id)}
+            >
+              <StyledImageBlock>
+                <StyledImage src={item.image} alt={item.title} />
+              </StyledImageBlock>
+              <GroupIcons>
+                <StyledIcons
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    addToBasketFromMain(item.id);
+                  }}
+                >
+                  <Icons.GreenBasket />
+                </StyledIcons>
+                <StyledIcons
+                  onClick={(e) => {
+                    e.stopPropagation();
+                  }}
+                >
+                  <Icons.Heart />
+                </StyledIcons>
+                <StyledIcons
+                  onClick={(e) => {
+                    e.stopPropagation();
+                  }}
+                >
+                  <Icons.Search />
+                </StyledIcons>
+              </GroupIcons>
+              <BlockTitlePrice>
+                <StyledTitle>{item.title}</StyledTitle>
+                <StyledPrice>${item.price}</StyledPrice>
+              </BlockTitlePrice>
+            </StyledCardItem>
+          ))}
+        </>
+      )}
     </StyledList>
   );
 };
@@ -110,4 +139,12 @@ const StyledPrice = styled.span`
   color: rgb(70, 163, 88);
   font-size: 18px;
   font-weight: 700;
+`;
+const NoProductsText = styled.p`
+  width: 100%;
+  text-align: center;
+  font-size: 20px;
+  color: #999;
+  margin-top: 50px;
+  margin-left: 40%;
 `;
