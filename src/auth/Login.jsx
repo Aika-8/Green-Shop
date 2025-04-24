@@ -1,4 +1,4 @@
-import React, {  useState } from "react";
+import React, { useState } from "react";
 import { Icons } from "../assets/icons/icon";
 import { Button } from "../components/UI/Button";
 import styled from "styled-components";
@@ -160,7 +160,6 @@ const StyledForm = styled.form`
   flex-direction: column;
   align-items: center;
   gap: 20px;
-  margin-top: 150px;
 `;
 const StyledContainerAuth = styled.div`
   display: flex;
@@ -169,10 +168,11 @@ const StyledContainerAuth = styled.div`
   gap: 28px;
 `;
 const StyledPTag = styled.p`
+  width: 200px;
   color: rgb(61, 61, 61);
   font-weight: 600;
   line-height: 16px;
-  margin-right: 45%;
+  margin-right: 43%;
 `;
 const LeftBlockInput = styled.div`
   display: flex;

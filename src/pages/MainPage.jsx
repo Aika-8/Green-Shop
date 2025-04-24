@@ -1,14 +1,19 @@
 import React from "react";
 import { cards } from "../utils/constants/cards";
 import styled from "styled-components";
-import { IconsButton } from "./UI/IconsButton";
+import { IconsButton } from "../components/UI/IconsButton";
 import { Icons } from "../assets/icons/icon";
+import { useNavigate } from "react-router-dom";
 
-export const MainContent = () => {
+export const MainPage = () => {
+  const navigate = useNavigate();
+  const handleCardClick = (id) => {
+    navigate(`/main/${id}`);
+  };
   return (
     <StyledList>
       {cards.map((item) => (
-        <StyledCardItem key={item.id}>
+        <StyledCardItem key={item.id} onClick={() => handleCardClick(item.id)}>
           <StyledImageBlock>
             <StyledImage src={item.image} alt={item.title} />
           </StyledImageBlock>
@@ -40,7 +45,6 @@ const StyledList = styled.ul`
   align-items: flex-start;
   gap: 41px;
   position: relative;
-  top: 150px;
 `;
 const GroupIcons = styled.div`
   display: flex;
