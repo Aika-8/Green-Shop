@@ -1,5 +1,4 @@
 import React, { useContext } from "react";
-import { cards } from "../utils/constants/cards";
 import styled from "styled-components";
 import { IconsButton } from "../components/UI/IconsButton";
 import { Icons } from "../assets/icons/icon";

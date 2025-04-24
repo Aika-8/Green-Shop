@@ -5,6 +5,7 @@ import Logout from "../icons/Logout.svg?react";
 import Image from "../icons/Image.svg?react";
 import GreenBasket from "../icons/greenBasket.svg?react";
 import Heart from "../icons/heart.svg?react";
+import Delete from "../icons/delete.svg?react";
 
 export const Icons = {
   Logo,
@@ -14,4 +15,5 @@ export const Icons = {
   Image,
   GreenBasket,
   Heart,
+  Delete,
 };

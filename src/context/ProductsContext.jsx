@@ -36,10 +36,43 @@ const reducer = (state, action) => {
         ),
       };
     }
+    case "deleteFromBasket": {
+      return {
+        ...state,
+        basket: state.basket.filter((item) => item.id !== action.id),
+      };
+    }
     case "setSearchQuery":
       return {
         ...state,
         searchQuery: action.payload,
+      };
+    case "decrement":
+      return {
+        ...state,
+        basket: state.basket.map((item) => {
+          if (item.id === action.id && item.amount > 1) {
+            return {
+              ...item,
+              amount: item.amount - 1,
+              totalPrice: item.totalPrice - item.price,
+            };
+          }
+          return item;
+        }),
+      };
+    case "increment":
+      return {
+        ...state,
+        basket: state.basket.map((item) =>
+          item.id === action.id
+            ? {
+                ...item,
+                amount: item.amount + 1,
+                totalPrice: item.totalPrice + item.price,
+              }
+            : item
+        ),
       };
     default:
       return state;
@@ -54,9 +87,19 @@ export const ProductsProvider = ({ children }) => {
   const setSearchQuery = (query) => {
     dispatch({ type: "setSearchQuery", payload: query });
   };
+  const increment = (id) => dispatch({ type: "increment", id });
+  const decrement = (id) => dispatch({ type: "decrement", id });
+  const deleteFromBasket = (id) => dispatch({ type: "deleteFromBasket", id });
   return (
     <ProductsContext.Provider
-      value={{ state, addToBasketFromMain, setSearchQuery }}
+      value={{
+        state,
+        addToBasketFromMain,
+        setSearchQuery,
+        increment,
+        decrement,
+        deleteFromBasket,
+      }}
     >
       {children}
     </ProductsContext.Provider>

@@ -42,14 +42,16 @@ export const Header = () => {
             <StyledLink to="/blog">Blogs</StyledLink>
           </StyledNav>
           <StyledBlockClientFnc>
-            <BlockLoupeBasket onClick={handleSearchIconClick}>
-              <Icons.Search />
-              <IconWithBadge>
-                <Icons.Basket />
-                {totalBasketAmount > 0 && (
-                  <StyledBadge>{totalBasketAmount}</StyledBadge>
-                )}
-              </IconWithBadge>
+            <BlockLoupeBasket>
+              <Icons.Search onClick={handleSearchIconClick} />
+              <StyledLink to="/basket">
+                <IconWithBadge>
+                  <Icons.Basket />
+                  {totalBasketAmount > 0 && (
+                    <StyledBadge>{totalBasketAmount}</StyledBadge>
+                  )}
+                </IconWithBadge>
+              </StyledLink>
             </BlockLoupeBasket>
             <StyledLogout>
               <StyledLink to="/auth">
