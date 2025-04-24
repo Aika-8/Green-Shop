@@ -7,7 +7,7 @@ import { IconsButton } from "../components/UI/IconsButton";
 import { NavLink } from "react-router-dom";
 
 export const BasketPage = () => {
-  const { state, increment, decrement, deleteFromBasket } =
+  const { state, increment, decrement, deleteFromBasket, clearBasket } =
     useContext(ProductsContext);
   const totalAmount = state.basket.reduce((acc, item) => acc + item.amount, 0);
   const TotalPrice = state.basket
@@ -66,7 +66,9 @@ export const BasketPage = () => {
                 <h3>${TotalPrice}</h3>
               </BlockTotalPrice>
             </div>
-            <Button variant={"order"}>Order</Button>
+            <Button variant={"order"} onClick={clearBasket}>
+              Order
+            </Button>
           </ContainerDelivery>
         </ContainerBasketAndDelivery>
       ) : (

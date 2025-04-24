@@ -1,5 +1,6 @@
 import { createContext, useReducer } from "react";
 import { cards } from "../utils/constants/cards";
+import { toast } from "react-toastify";
 export const ProductsContext = createContext();
 const initialState = {
   productsCatalog: cards,
@@ -74,6 +75,12 @@ const reducer = (state, action) => {
             : item
         ),
       };
+    case "Order": {
+      return {
+        ...state,
+        basket: [],
+      };
+    }
     default:
       return state;
   }
@@ -90,6 +97,9 @@ export const ProductsProvider = ({ children }) => {
   const increment = (id) => dispatch({ type: "increment", id });
   const decrement = (id) => dispatch({ type: "decrement", id });
   const deleteFromBasket = (id) => dispatch({ type: "deleteFromBasket", id });
+  const clearBasket = (id) => {
+    toast.success("The order was successfully created"), dispatch({ type: "Order", id });
+  };
   return (
     <ProductsContext.Provider
       value={{
@@ -99,6 +109,7 @@ export const ProductsProvider = ({ children }) => {
         increment,
         decrement,
         deleteFromBasket,
+        clearBasket,
       }}
     >
       {children}
